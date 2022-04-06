@@ -1,0 +1,411 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="DXSuite処理" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:pa="clr-namespace:PresentationRobot.Activities;assembly=PresentationRobot.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="Document" Type="InArgument(x:String)" />
+    <x:Property Name="CsvFileName" Type="OutArgument(x:String)" />
+    <x:Property Name="Status" Type="OutArgument(x:String)" />
+    <x:Property Name="DownloadFolder" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>1279.33333333333,3564</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="43">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Persistence.Activities.FormTask</x:String>
+      <x:String>UiPath.Persistence.Activities.Model.Task</x:String>
+      <x:String>UiPath.Persistence.Activities.Tasks</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.Persistence.Activities.BaseTask</x:String>
+      <x:String>UiPath.Persistence.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.PDF.Activities.PDF</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>PresentationRobot.Enums</x:String>
+      <x:String>PresentationRobot.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="42">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>SubtitleActivity</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>PresentationRobot</AssemblyReference>
+      <AssemblyReference>PresentationRobot.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Callout.Activity</AssemblyReference>
+      <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MLServices.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>Presentation</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="DX-Suite処理" sap:VirtualizedContainerService.HintSize="835.333333333333,3499.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_214">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="UnitID" />
+      <Variable x:TypeArguments="x:Boolean" Name="StatusCheckFlag" />
+      <Variable x:TypeArguments="njl:JObject" Name="JsonResponse" />
+      <Variable x:TypeArguments="x:Int32" Name="StatusCode" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="シーケンス：Upload" sap:VirtualizedContainerService.HintSize="793.333333333333,982.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_185">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="s:String[]" Name="Files" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <pa:DisplayMessage ContinueOnError="{x:Null}" BackgroundColor="Black" BackgroundOpacity="1" FontSize="40" sap:VirtualizedContainerService.HintSize="588.666666666667,84.6666666666667" sap2010:WorkflowViewState.IdRef="DisplayMessage_12" Image="SearchingRobot" IsFullWidth="True" Message="AI-OCRツールへPDFをアップロード中" Position="DownLeft" TextColor="White" />
+      <TryCatch DisplayName="Try catch" sap:VirtualizedContainerService.HintSize="588.666666666667,766" sap2010:WorkflowViewState.IdRef="TryCatch_28">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <TryCatch.Try>
+          <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="550,531.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_217">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="njl:JObject" Name="AddJsonResponse" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ワークフローファイルを呼び出し" sap:VirtualizedContainerService.HintSize="508,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_36" UnSafe="False" WorkflowFileName="Reading_Pages_Add.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;ApiKey&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_URL">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;URL&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:Int32" x:Key="in_DocumentID">
+                  <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="cint(Config(&quot;DocumentID&quot;))" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Document" />
+                </InArgument>
+                <OutArgument x:TypeArguments="njl:JObject" x:Key="out_JsonResponse">
+                  <mva:VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="AddJsonResponse" />
+                </OutArgument>
+                <InArgument x:TypeArguments="x:Int32" x:Key="in_UnitID" />
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <If sap2010:Annotation.AnnotationText="ステータスがsuccessの場合、ユニットIDをセット" Condition="[AddJsonResponse(&quot;status&quot;).ToString.Equals(&quot;success&quot;)]" DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="508,286" sap2010:WorkflowViewState.IdRef="If_20">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Assign sap2010:Annotation.AnnotationText="レスポンスからユニットIDを定義" DisplayName="代入" sap:VirtualizedContainerService.HintSize="262,92.6666666666667" sap2010:WorkflowViewState.IdRef="Assign_53">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[UnitID]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[Integer.Parse(AddJsonResponse("unitId").ToString)]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+              </If.Then>
+              <If.Else>
+                <Throw DisplayName="スロー" Exception="[new Exception(AddJsonResponse(&quot;message&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
+              </If.Else>
+            </If>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="554.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_28">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="376,247.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_218">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="メッセージをログ" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Error" Message="[date.Now.ToString + &quot; &quot; + exception.GetType().ToString + &quot; &quot; + Document + Chr(10) + exception.Message + Chr(10) + exception.StackTrace]" />
+                <Rethrow DisplayName="再スロー" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+    </Sequence>
+    <Sequence DisplayName="シーケンス：Upload完了待ち" sap:VirtualizedContainerService.HintSize="793.333333333333,1736" sap2010:WorkflowViewState.IdRef="Sequence_224">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <pa:DisplayMessage ContinueOnError="{x:Null}" BackgroundColor="Black" BackgroundOpacity="1" FontSize="40" sap:VirtualizedContainerService.HintSize="751.333333333333,84.6666666666667" sap2010:WorkflowViewState.IdRef="DisplayMessage_14" Image="SearchingRobot" IsFullWidth="True" Message="アップロード完了待ち" Position="DownLeft" TextColor="White" />
+      <If Condition="[cbool(Config(&quot;StatusCheckFlag&quot;))]" DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="751.333333333333,1519.33333333333" sap2010:WorkflowViewState.IdRef="If_22">
+        <If.Then>
+          <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="714.666666666667,1326.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_223">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="トライキャッチ" sap:VirtualizedContainerService.HintSize="672.666666666667,1234.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_29">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="634,1000" sap2010:WorkflowViewState.IdRef="Sequence_221">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:RetryScope DisplayName="リトライ スコープ" sap:VirtualizedContainerService.HintSize="592,908" sap2010:WorkflowViewState.IdRef="RetryScope_4" NumberOfRetries="20" RetryInterval="00:00:03">
+                    <ui:RetryScope.ActivityBody>
+                      <ActivityAction>
+                        <Sequence DisplayName="アクション" sap:VirtualizedContainerService.HintSize="550,661.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_220">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ワークフローファイルを呼び出し" sap:VirtualizedContainerService.HintSize="508,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_37" UnSafe="False" WorkflowFileName="Reading_Units.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;ApiKey&quot;)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_URL">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;URL&quot;)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="in_DocsetID" />
+                              <InArgument x:TypeArguments="x:Int32" x:Key="in_DocumentID" />
+                              <InArgument x:TypeArguments="x:Int32" x:Key="in_UnitID">
+                                <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="UnitID" />
+                              </InArgument>
+                              <OutArgument x:TypeArguments="njl:JObject" x:Key="out_JsonResponse">
+                                <mva:VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="JsonResponse" />
+                              </OutArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                          <If sap2010:Annotation.AnnotationText="ステータスがsuccessの場合、ステータスコードをセット" Condition="[JsonResponse(&quot;status&quot;).ToString.Equals(&quot;success&quot;)]" DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="508,282.666666666667" sap2010:WorkflowViewState.IdRef="If_21">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Assign sap2010:Annotation.AnnotationText="戻り値からステータスコードを取得" DisplayName="代入" sap:VirtualizedContainerService.HintSize="262,92.6666666666667" sap2010:WorkflowViewState.IdRef="Assign_54">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[StatusCode]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[Integer.Parse(JsonResponse("readingUnits")(0)("status").ToString)]</InArgument>
+                                </Assign.Value>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Assign>
+                            </If.Then>
+                            <If.Else>
+                              <Throw DisplayName="スロー" Exception="[new Exception(JsonResponse(&quot;message&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                            </If.Else>
+                          </If>
+                          <ui:LogMessage DisplayName="メッセージをログ" sap:VirtualizedContainerService.HintSize="508,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;StatusCode：&quot; + StatusCode.ToString]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:RetryScope.ActivityBody>
+                    <ui:RetryScope.Condition>
+                      <ActivityFunc x:TypeArguments="x:Boolean">
+                        <ui:CheckTrue DisplayName="True か確認" ErrorMessage="ベリファイ未完了" Expression="[StatusCode = 16]" sap:VirtualizedContainerService.HintSize="334,86.6666666666667" sap2010:WorkflowViewState.IdRef="CheckTrue_2" />
+                      </ActivityFunc>
+                    </ui:RetryScope.Condition>
+                  </ui:RetryScope>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="638.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_29">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="376,247.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_222">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Error" Message="[date.Now.ToString + &quot; &quot; + exception.GetType().ToString + &quot; &quot;  + Chr(10) +exception.Message + Chr(10) + Exception.StackTrace]" />
+                      <Rethrow DisplayName="再スロー" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Rethrow_2" />
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Sequence>
+        </If.Then>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="シーケンス：Download" sap:VirtualizedContainerService.HintSize="793.333333333333,608.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_195">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <pa:DisplayMessage ContinueOnError="{x:Null}" BackgroundColor="Black" BackgroundOpacity="1" FontSize="40" sap:VirtualizedContainerService.HintSize="438.666666666667,84.6666666666667" sap2010:WorkflowViewState.IdRef="DisplayMessage_13" Image="SearchingRobot" IsFullWidth="True" Message="AI-OCRツールから解析データをダウンロード中" Position="DownLeft" TextColor="White" />
+      <TryCatch sap2010:Annotation.AnnotationText="プロジェクトフォルダ/Output配下へ読み取りデータのCSVファイルをダウンロード&#xA;（OCRが完了していない場合、エラーとなる）" DisplayName="Try catch" sap:VirtualizedContainerService.HintSize="438.666666666667,392" sap2010:WorkflowViewState.IdRef="TryCatch_30">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <TryCatch.Try>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ワークフローファイルを呼び出し" sap:VirtualizedContainerService.HintSize="334,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_38" UnSafe="False" WorkflowFileName="Reading_Units_Export.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;ApiKey&quot;)" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_URL">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;URL&quot;)" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_FolderPath">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DownloadFolder" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_UnitID">
+                <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="UnitID" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_Status">
+                <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Status" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_OutPutFile">
+                <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="CsvFilename" />
+              </OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_FileName" />
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_30">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="376,238.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_229">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" Buttons="Ok" DisplayName="メッセージボックス" sap:VirtualizedContainerService.HintSize="334,84.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[date.Now.ToString + &quot; &quot; + exception.GetType().ToString + &quot; &quot; + UnitID.ToString + Chr(10) +exception.Message + Chr(10) + Exception.StackTrace]" TopMost="True" />
+                <Rethrow DisplayName="再スロー" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Rethrow_3" />
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+    </Sequence>
+  </Sequence>
+</Activity>
